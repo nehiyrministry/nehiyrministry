@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nehiyr Ministry</title>
+    <meta name="description" content="Site officiel de Nehiyr Ministry : cultes dominicaux, soirées agapées, événements spirituels. Bienvenue !">
+  <meta name="keywords" content="Nehiyr Ministry250,Nehiyr Ministry250, groupe de jeune chrétien, culte, prière, foi, événement chrétien, Kigali">
+  <meta name="author" content="Nehiyr Ministry">
+    <link rel="icon" type="image/png" href="./nehiyr.jpg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/scrollreveal@4.0.7/dist/scrollreveal.min.css">
+
+    <style>
+        :root {
+            --primary: #FF7B25;  /* Orange vif */
+            --primary-dark: #E0661D; /* Orange foncé */
+            --secondary: #FFC125; /* Jaune-orange */
+            --dark: #ececec;
+            --light: #f8fafc;
+            --gray-light: #f3f4f6;
+            --gray-dark: #4b5563;
+            --radius: 12px;
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.1),0 2px 4px -2px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1),0 4px 6px -4px rgba(0,0,0,0.1);
+            --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.1),0 8px 10px -6px rgba(0,0,0,0.1);
+        }
+        
+        /* Base styles */
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            scroll-behavior: smooth;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+            line-height: 1.6;
+            color: var(--gray-dark);
+            background-color: var(--gray-light);
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 0.75em;
+        }
+        
+        /* Hero section */
+        .hero-video {
+            position: relative;
+            height: 100vh;
+            min-height: 600px;
+            overflow: hidden;
+            background-color: #000;
+        }
+        
+        .hero-video video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: 0;
+            object-fit: cover;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            backdrop-filter: blur(2px);
+        }
+        
+        /* Cards */
+        .event-card {
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            will-change: transform, box-shadow;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+            border-radius: var(--radius);
+            overflow: hidden;
+            background: white;
+        }
+        
+        .event-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: var(--shadow-xl);
+        }
+        
+        /* Leader cards */
+        .leader-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            will-change: transform;
+            transform-style: preserve-3d;
+            box-shadow: var(--shadow);
+            border-radius: var(--radius);
+            overflow: hidden;
+            background: white;
+        }
+        
+        .leader-card:hover {
+            transform: translateY(-5px) rotateX(5deg) rotateY(0deg) rotateZ(0deg) scale(1.05);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        /* Buttons */
+        .btn-primary {
+            background-image: linear-gradient(to right, var(--primary), var(--primary-dark));
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            border: none;
+            color: white;
+            font-weight: 600;
+            border-radius: var(--radius);
+            padding: 0.75rem 1.5rem;
+            cursor: pointer;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(to right, var(--primary-dark), var(--primary));
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.3s ease;
+        }
+        
+        .btn-primary:hover::after {
+            opacity: 1;
+        }
+        
+        /* Forms */
+        input, textarea, select {
+            transition: all 0.2s ease;
+            border-radius: var(--radius);
+            border: 1px solid #d1d5db;
+            padding: 0.75rem;
+            width: 100%;
+        }
+        
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(255, 123, 37, 0.2);
+        }
+        
+        /* Navigation */
+        nav a {
+            position: relative;
+            transition: color 0.2s ease;
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        /* Scroll animations */
+        .reveal {
+            opacity: 0;
+            transition: all 0.6s ease;
+            transform: translateY(20px);
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Testimonials */
+        .testimonial-slide {
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        }
+        
+        /* Section styling */
+        section {
+            padding: 5rem 0;
+            position: relative;
+        }
+        
+        .section-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 2rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--primary);
+        }
+        
+        /* Mobile optimizations */
+        @media (max-width: 768px) {
+            .hero-video {
+                min-height: 80vh;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-content p {
+                font-size: 1rem;
+            }
+            
+            section {
+                padding: 3rem 0;
+            }
+            
+            .btn-primary {
+                padding: 0.75rem 1.5rem !important;
+            }
+        }
+        
+        /* Skeleton loading */
+        @keyframes shimmer {
+            0% { background-position: -1200px 0; }
+            100% { background-position: 1200px 0; }
+        }
+        
+        /* Admin Styles */
+        #admin-panel {
+            padding-top: 4rem;
+        }
+        
+        .admin-card {
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .admin-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        /* Admin Modal */
+        #admin-login {
+            transition: opacity 0.3s ease;
+        }
+        
+        #admin-login.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .skeleton {
+            animation: shimmer 2.2s infinite linear;
+            background: linear-gradient(to right, #f6f7f8 8%, #e9ebee 18%, #f6f7f8 33%);
+            background-size: 1200px 100%;
+        }
+    </style>
+
+
+</head>
+<body class="bg-gray-50">
+    <!-- Barre de navigation -->
+    <nav class="fixed w-full bg-white shadow-md z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                     <a href="#" class="text-xl font-bold text-orange-600 flex items-center">
+                        <img src="./nehiyr.jpg" alt="Nehiyr Ministry Logo" class="h-8 mr-2">
+                        <h2>Nehiyr Ministry</h2>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#accueil" class="text-gray-700 hover:text-orange-600">Accueil</a>
+                    <a href="#apropos" class="text-gray-700 hover:text-orange-600">À propos</a>
+                    <a href="#evenements" class="text-gray-700 hover:text-orange-600">Événements</a>
+                    <a href="#localisation" class="text-gray-700 hover:text-orange-600">Localisation</a>
+                    <a href="#leaders" class="text-gray-700 hover:text-orange-600">Nos leaders</a>
+                    <a href="#contact" class="text-gray-700 hover:text-orange-600">Contact</a>
+                    <a href="#admin-login" class="text-gray-700 hover:text-orange-600">Admin</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="menu-btn" class="text-gray-700">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Menu mobile -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#accueil" class="block px-3 py-2 text-gray-700 hover:text-orange-600">Accueil</a>
+                <a href="#apropos" class="block px-3 py-2 text-gray-700 hover:text-orange-600">À propos</a>
+                <a href="#evenements" class="block px-3 py-2 text-gray-700 hover:text-orange-600">Événements</a>
+                <a href="#localisation" class="block px-3 py-2 text-gray-700 hover:text-orange-600">Localisation</a>
+                <a href="#leaders" class="block px-3 py-2 text-gray-700 hover:text-orange-600">Nos leaders</a>
+                <a href="#contact" class="block px-3 py-2 text-gray-700 hover:text-orange-600">Contact</a>
+                <a href="#admin-login" class="block px-3 py-2 text-gray-700 hover:text-orange-600">Admin</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Section Accueil -->
+    <section id="accueil" class="hero-video">
+        <video autoplay muted loop>
+            <source src="./Intro.mp4" type="video/mp4">
+        </video>
+        <div class="hero-content h-full flex flex-col justify-center items-center text-center bg-black bg-opacity-50 text-white px-4">
+            <div class="max-w-3xl mx-auto reveal">
+                <h1 class="text-5xl md:text-6xl font-bold mb-6">NEHIYR  MINISTRY</h1>
+                <p class="text-2xl md:text-3xl font-semibold mb-8">" GROUPE  DE PRIERE DES JEUNES CHRETIENS  "</p>
+                <p class="text-xl mb-8">« lève-toi sois éclairée, car ta lumière arrive, et la gloire de l’Eternel se 
+lève sur toi.  Voici les ténèbres couvrent la terre, et l’obscurité les peuples ; Mais sur toi l’Eternel se 
+lève, sur toi sa gloire apparait. Des nations marchent à ta lumière, et les rois à la clarté de tes 
+rayons. »   <span class="italic">(Esaïe 60 : 1-3)</span></p>
+                <a href="#apropos" class="btn-primary inline-block px-8 py-3 rounded-lg text-lg font-semibold">
+                    Découvrir Nehiyr Ministry
+                </a>
+            </div>
+            
+            
+        </div>
+    </section>
+
+    <!-- Section À propos -->
+    <section id="apropos" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4 section-title">À propos de Nehiyr Ministry</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="reveal">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Notre histoire</h3>
+                    <p class="text-gray-600 mb-6">L’an deux-mille- vingt et un, le 3ème jour du mois de Décembre a été fondé à Kigali, la capitale de la 
+République du Rwanda, dans le district de Gasabo, secteur de Gisozi/café, entre les adhérents aux 
+présents statuts et  pour ceux qui adhéreront ultérieurement, une association sans but lucratif ; un 
+groupe chrétien, des jeunes étudiants internationaux dénommé « NEHIYR » en hébreux qui signifie 
+lumière.</p>
+                    
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-3">Notre vision</h3>
+                    <p class="text-gray-600 mb-4">Notre vision est de voir des jeunes gens du monde entier croire et confesser Jésus-Christ comme 
+sauveur et seigneur , de les voir mener une vie d’excellence qui glorifie Dieu en vue d’un impact 
+générationnel et positif tout en étant des modèles de christ, faisant rayonner la gloire de Dieu sur toute 
+la terre selon qu’il est écrit : « lève-toi sois éclairée, car ta lumière arrive, et la gloire de l’Eternel se 
+lève sur toi.  Voici les ténèbres couvrent la terre, et l’obscurité les peuples ; Mais sur toi l’Eternel se 
+lève, sur toi sa gloire apparait. Des nations marchent à ta lumière, et les rois à la clarté de tes 
+rayons. » (Esaïe 60 : 1-3).</p>
+                    
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-3">La mission du groupe</h3>
+                    <ul class="space-y-2 mb-8">
+                        <li class="flex items-start">
+                            <i class="fas fa-pray text-orange-500 mt-1 mr-2"></i>
+                            <span class="text-gray-600">Annoncer l’évangile de Jésus-Christ</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-seedling text-orange-500 mt-1 mr-2"></i>
+                            <span class="text-gray-600">Encadrer et former les jeunes qui sont autrefois séparés de leurs parents pour raisons d’études, 
+les maintenir dans la foi en vue de leur croissance spirituelle jusqu’à ce qu’ils retrouvent leurs 
+familles respectives. </span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-hands-praying text-orange-500 mt-1 mr-2"></i>
+                            <span class="text-gray-600">Créer un cadre social d’entraide et d’assistance pour les jeunes où ils peuvent prendre soin des 
+uns des autres et s’épanouir dans leur vie étant dans le seigneur.  </span>
+                        </li>
+                    </ul>
+                    
+                    
+                </div>
+                
+                <div class="relative reveal">
+                    <img src="./img1.jpeg" alt="Groupe de prière en cercle tenant la main dans une église avec lumière chaude filtrant par les vitraux" class="rounded-lg shadow-xl w-full">
+                    <div class="absolute -bottom-6 -left-6 bg-orange-600 w-32 h-32 rounded-lg z-0"></div>
+                    <div class="relative z-10 bg-white p-6 shadow-lg rounded-lg -mt-16 ml-16 max-w-xs">
+                        <i class="fas fa-quote-left text-3xl text-orange-600 opacity-20 mb-2"></i>
+                        <p class="text-gray-700 italic">"Cherchez premièrement le royaume et la justice de Dieu; et toutes ces choses vous seront données par-dessus."</p>
+                        <p class="text-right font-medium mt-2">Matthieu 6:33</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!--
+                    
+                    <div class="mb-8 reveal">
+                        <div class="flex flex-col md:flex-row">
+                            <div class="w-full md:w-1/2 px-4 py-2"></div>
+                            <div class="w-full md:w-1/2 px-4 py-2">
+                                <div class="p-6 bg-gray-50 rounded-lg shadow-md">
+                                    <div class="flex items-center mb-2">
+                                        <div class="w-6 h-6 rounded-full bg-blue-600 border-4 border-white absolute left-1/2 transform -translate-x-1/2"></div>
+                                        <h4 class="text-lg font-semibold ml-4">2017</h4>
+                                    </div>
+                                    <p class="text-gray-600">Première conférence nationale sur le jeûne et la prière avec 300 participants</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-8 reveal">
+                        <div class="flex flex-col md:flex-row">
+                            <div class="w-full md:w-1/2 px-4 py-2">
+                                <div class="p-6 bg-gray-50 rounded-lg shadow-md">
+                                    <div class="flex items-center mb-2">
+                                        <div class="w-6 h-6 rounded-full bg-blue-600 border-4 border-white absolute left-1/2 transform -translate-x-1/2"></div>
+                                        <h4 class="text-lg font-semibold ml-4">2020</h4>
+                                    </div>
+                                    <p class="text-gray-600">Lancement du programme "21 jours de jeûne et prière" qui touche 5000 personnes</p>
+                                </div>
+                            </div>
+                            <div class="w-full md:w-1/2 px-4 py-2"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Événements -->
+    <section id="evenements" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4 section-title">Nos événements et activités</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                
+                <!-- Événement 2 -->
+                <div class="event-card reveal">
+                    <img src="./img6.jpeg" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Cultes</h3>
+                        <p class="text-gray-600 mb-4">Nous nous réunissons chaque vendredi et dimanche de 16h00 à 18h00 pour vivre des moments intenses de louange, d’adoration et d’édification autour de la Parole de Dieu. Ces temps de rassemblement sont l’occasion de fortifier notre foi, de partager la communion fraternelle, et de grandir ensemble dans la présence de Dieu. Venez tel que vous êtes, et laissez-vous transformer par l’amour et la puissance du Saint-Esprit.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500"><i class="fas fa-map-marker-alt mr-1"></i> Nehiyr ministry </span>
+                            
+                        </div>
+                    </div>
+                </div>
+                <!-- Événement 1 -->
+                <div class="event-card reveal">
+                    <img src="./img5.jpeg" alt="Grande salle de conférence remplie de participants pendant une session de prière intensive" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Retraite spirituel</h3>
+                        <p class="text-gray-600 mb-4">Des temps de consécration collective, mis à part pour rechercher la face de Dieu avec intensité et profondeur. C’est une pause sacrée où nous nous déconnectons du tumulte quotidien pour nous recentrer sur l’essentiel : notre relation avec le Seigneur. À travers la prière, le jeûne, la méditation de la Parole et l’écoute de Sa voix, Dieu nous restaure, nous fortifie et nous renouvelle en profondeur.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500"><i class="fas fa-map-marker-alt mr-1"></i> Nehiyr ministry</span>
+                            
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Événement 3 -->
+                <div class="event-card reveal">
+                    <img src="./img4.jpeg" alt="Femme africaine prêchant avec passion devant une congrégation attentive" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Talitha Koumi</h3>
+                        <p class="text-gray-600 mb-4">Des temps dédié à la femme, pour célébrer sa valeur, sa beauté et sa destinée en Dieu. "Talitha Koumi", qui signifie "Jeune fille, lève-toi", est un appel puissant à chaque femme pour se relever, prendre sa place, et marcher dans l'identité que Dieu lui a donnée. Durant ce mois spécial, des rencontres, enseignements, témoignages et moments de prière sont organisés pour inspirer, fortifier et équiper les femmes  à impacter leur génération avec foi et audace.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500"><i class="fas fa-map-marker-alt mr-1"></i> Nehiyr ministry</span>
+                            
+                        </div>
+                    </div>
+                </div>
+                <!-- Événement 4 -->
+                <div class="event-card reveal">
+                    <img src="./img3.jpeg" alt="Femme africaine prêchant avec passion devant une congrégation attentive" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                       
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Agapé</h3>
+                        <p class="text-gray-600 mb-4">Plus qu’un simple événement, Agapé est une célébration de l’amour divin dans toute sa pureté. Ce moment fort de l’année rassemble la famille de la foi autour d’un repas, de louanges, de partages et de communion fraternelle, dans un esprit d’unité et de reconnaissance. Inspiré de l’amour inconditionnel de Dieu, Agapé nous rappelle que nous sommes appelés à aimer comme Christ nous a aimés  sans condition, sans réserve, avec grâce et vérité.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500"><i class="fas fa-map-marker-alt mr-1"></i> Nehiyr ministry</span>
+                            
+                        </div>
+                    </div>
+                </div>  
+
+                <!-- Événement 5 -->
+                 <div class="event-card reveal">
+                    <img src="./img7.jpeg">
+                    <div class="p-6">
+                        
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Échange de Cadeaux</h3>
+                        <p class="text-gray-600 mb-4">Un moment chaleureux et rempli de joie où chacun exprime l’amour fraternel à travers un geste simple : offrir. L’échange de cadeaux symbolise le partage, la générosité et l’attention envers l’autre. C’est l’occasion de créer des liens plus forts, de semer la joie dans les cœurs, et de rappeler que chaque présent, aussi modeste soit-il, peut porter un grand message d’amour et d’encouragement.
+
+</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500"><i class="fas fa-map-marker-alt mr-1"></i> Nehiyr ministry</span>
+                        
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Événement 5 -->
+                 <div class="event-card reveal">
+                    <img src="./img2.jpeg" alt="Femme africaine prêchant avec passion devant une congrégation attentive" class="w-full h-48 object-cover">
+                    <div class="p-6">
+
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Soiree Recreative</h3>
+                        <p class="text-gray-600 mb-4">Un temps de détente, de rires et de convivialité pour renforcer les liens fraternels dans une ambiance joyeuse et décontractée. À travers des jeux, des sketchs, des activités artistiques et des moments de partage, la soirée récréative permet à chacun de s’exprimer librement, de se divertir sainement et de célébrer la vie communautaire dans la bonne humeur. Une belle occasion de se retrouver autrement, dans la simplicité et la joie du Seigneur.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500"><i class="fas fa-map-marker-alt mr-1"></i> Nehiyr ministry</span>
+                          
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+           
+        </div>
+    </section>
+
+    <!-- Section Localisation -->
+    <section id="localisation" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4 section-title">Où nous trouver</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                
+                    
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-inner mb-8">
+                        <h4 class="text-xl font-semibold text-gray-800 mb-3">Nehiyr ministry</h4>
+                        <address class="not-italic">
+                            <p class="text-gray-600 mb-1"><i class="fas fa-map-marker-alt text-blue-600 mr-2"></i>KIGALI, SECTEUR DE GISAZI /CAFE</p>
+
+                            
+                            <p class="text-gray-600 mb-1"><i class="fas fa-clock text-blue-600 mr-2"></i> <strong>Horaires :</strong></p>
+                            <ul class="text-gray-600 space-y-1">
+                                <li> Vendredi : 16h-18h </li>
+                                
+                                <li>Dimanche : 16h-18h </li>
+                            </ul>
+                        </address>
+                    </div>
+                    
+                    
+                    
+                    <a href="https://maps.app.goo.gl/RF2eruQn8dSfHaeo9?g_st=com.google.maps.preview.copym" target="_blank" class="btn-primary inline-flex items-center px-6 py-3">
+                        <i class="fas fa-map-marked-alt mr-2"></i>
+                        Comment venir ?
+                    </a>
+                </div>
+                
+                <div class="reveal">
+                   <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63801.008509209154!2d30.02060557910157!3d-1.926560200000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x19dca53d382e5a43%3A0xbea1e8f845ed125e!2sCaf%C3%A9%20de%20Gisozi!5e0!3m2!1sfr!2srw!4v1751290417751!5m2!1sfr!2srw" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Leaders -->
+    <section id="leaders" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4 section-title">Nos leaders</h2>
+                <p class="text-xl text-gray-600 mt-4 max-w-3xl mx-auto">Des leaders engagés, motivés par l’amour de Jésus, qui construisent avec nous une famille spirituelle forte.</p>
+            </div>
+            
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Leader 1 -->
+                <div class="leader-card reveal">
+                    <img src="./dan.jpeg" alt="" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-1">KABAMBA MULONGOY DAN</h3>
+                        <p class="text-orange-600 text-sm mb-4">Président</p>
+                        <p class="text-gray-600 text-sm mb-4">Né le 7 décembre à Lubumbashi (RDC), Kabamba Mulangoy Dan est un serviteur de Dieu, enseignant et leader spirituel. Marqué dès l’enfance par l’appel divin, il se consacre à l’édification avec humilité et constance.
+
+Formé en latin-philosophie, il poursuit ses études à l’Université Libre de Kigali, tout en enseignant le français. Converti à l’adolescence, il est baptisé en 2015 et entre dans le ministère l’année suivante.
+
+Il a servi comme modérateur, évangéliste et moniteur d’école du dimanche au sein de la jeunesse La Bonne Semence (30ᵉ C.P.C.O). Depuis 2022, il préside le Mouvement Nehiyr Ministry à Kigali, accompagné spirituellement par son père dans la foi, Jean-Claude Mukadi.
+
+Homme de vision et de fidélité, il se définit comme un bâtisseur silencieux : discret, mais toujours fécond dans le service.Citation favorite :
+« Ce que tu ne changes pas, tu le choisis. »</p>
+                        <div class="flex space-x-4 text-sm">
+                            <a href="#" class="text-gray-500 hover:text-orange-600">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                            <a href="#" class="text-gray-500 hover:text-orange-600">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                        </div>
+                        <div class="mt-4 pt-4 border-t border-gray-200">
+                            <p class="text-gray-700 italic">"Que votre lumière luise ainsi devant les hommes, afin qu’ils voient vos bonnes œuvres, et qu’ils glorifient votre Père qui est dans les cieux."</p>
+                            <p class="text-right text-sm text-gray-500"> Matthieu 5:16</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Leader 2 -->
+                <div class="leader-card reveal">
+                    <img src="./Jordan.jpeg" alt="" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-1">JORDAN AGANZE</h3>
+                        <p class="text-orange-600 text-sm mb-4">Vice président</p>
+                        <p class="text-gray-600 text-sm mb-4"> Il est un ingénieur en Génie civil, musicien, chantre.
+Il est aussi un amoureux de la parole de Dieu; venir à kigali pour poursuivre ses études universitaires a été pour lui une occasion spéciale qui a améliorée sa vie spirituelle grâce au bon entourage dont Nehiyr Ministry en fait partie.</p>
+                        <div class="flex space-x-4 text-sm">
+                            <a href="#" class="text-gray-500 hover:text-orange-600">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                            <a href="#" class="text-gray-500 hover:text-orange-600">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                        </div>
+                        <div class="mt-4 pt-4 border-t border-gray-200">
+                            <p class="text-gray-700 italic">"Heureux ceux qui placent en toi leur appui! Ils trouvent dans leur coeur des chemins tout tracés.."</p>
+                            <p class="text-right text-sm text-gray-500">Matthieu Psaumes, 84:6</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Leader 3 -->
+                <div class="leader-card reveal">
+                    <img src="./jemimah.jpeg" alt="" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-1">MULONGO BANZA JEMIMA’H </h3>
+                        <p class="text-orange-600 text-sm mb-4">Secrétaire général</p>
+                        <p class="text-gray-600 text-sm mb-4">Elle est Congolaise et servante de Dieu au Ministère Nehiyr de Kiga au Rwanda depuis trois ans, où elle occupe les fonctions de chantre et secrétaire. Elle est étudiante à l’UNILAK en faculté de Computing and Information Science, département Multimédia, et exerce également en tant qu’entrepreneure.</p>
+                        <div class="flex space-x-4 text-sm">
+                            <a href="#" class="text-gray-500 hover:text-orange-600">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                            <a href="#" class="text-gray-500 hover:text-orange-600">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                        </div>
+                        <div class="mt-4 pt-4 border-t border-gray-200">
+                            <p class="text-gray-700 italic">"Rendez grâces en toutes choses, car c’est à votre égard la volonté de Dieu en Jésus-Christ."</p>
+                            <p class="text-right text-sm text-gray-500">1 Thessaloniciens 5:18</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Leader 4 -->
+                 <div class="leader-card reveal">
+                    <img src="./manuella.jpeg" alt="" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-1">MANUELA KANAMUGIRE </h3>
+                        <p class="text-orange-600 text-sm mb-4">Caissière général </p>
+                        <p class="text-gray-600 text-sm mb-4">Elle est titulaire d’une licence en gestion financière et des entreprises. Elle est de double nationalité, rwandaise et congolaise. Servante de Dieu au Ministère Nehiyr .</p>
+                        <div class="flex space-x-4 text-sm">
+                            <a href="#" class="text-gray-500 hover:text-orange-600">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                            <a href="#" class="text-gray-500 hover:text-orange-600">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                        </div>
+                        <div class="mt-4 pt-4 border-t border-gray-200">
+                            <p class="text-gray-700 italic">" La crainte de l'Éternel est le commencement de la sagesse ; Tous ceux qui l'observent ont une raison saine. Sa gloire subsiste à jamais. "</p>
+                            <p class="text-right text-sm text-gray-500">Psaume 111:10</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Leader 5 -->
+                <div class="leader-card reveal">
+                    <img src="./stormy.jpeg" alt="" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-1">JEAN STORMY NKOGHE</h3>
+                        <p class="text-orange-600 text-sm mb-4">Responsable du département d’intersection</p>
+                        <p class="text-gray-600 text-sm mb-4">Fils spirituel du Révérend Francis Pongui Mouélé, Jean Stormy Nkoghe est un prédicateur passionné et intercesseur zélé. Il porte un message clair : conduire chacun vers sa destinée prophétique, tout en préparant l’Église pour l’enlèvement.
+
+Au sein de Nehiyr Ministry, il occupe la responsabilité du département des intercesseurs, où il sert avec ferveur et engagement.</p>
+                        <div class="flex space-x-4 text-sm">
+                            <a href="#" class="text-gray-500 hover:text-orange-600">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                            <a href="#" class="text-gray-500 hover:text-orange-600">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                        </div>
+                        <div class="mt-4 pt-4 border-t border-gray-200">
+                            <p class="text-gray-700 italic">"Mais celui qui s’attache au Seigneur est avec lui un même esprit. "</p>
+                            <p class="text-right text-sm text-gray-500">1 Corinthiens 6:17</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Leader 6 -->
+                 <div class="leader-card reveal">
+                    <img src="./josias.jpeg" alt="" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-1">MUNGUAKONKWA ZIRHUMANA JOSIAS</h3>
+                        <p class="text-orange-600 text-sm mb-4">Responsable du département de la chorale</p>
+                        <p class="text-gray-600 text-sm mb-4">Un jeune chrétien sauvé par grâce qui ensuite porte la mission de sauver d’autres personnes de sa génération. Originaire de la RDC mais qui reste à Kigali pour raisons D’études, depuis son arrivée à Kigali il a senti l’appel de Dieu qui était sur sa vie et depuis il a consacré toute sa vie pour servir Dieu.</p>
+                        <div class="flex space-x-4 text-sm">
+                            <a href="#" class="text-gray-500 hover:text-orange-600">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                            <a href="#" class="text-gray-500 hover:text-orange-600">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                        </div>
+                        <div class="mt-4 pt-4 border-t border-gray-200">
+                            <p class="text-gray-700 italic">"Laissez votre lumière luire devant les hommes."</p>
+                            <p class="text-right text-sm text-gray-500">Matthieu 5:16</p>
+                        </div>
+                    </div>
+                </div>
+<!-- Leader 7 -->
+                <div class="leader-card reveal">
+                    <img src="./pradel.jpeg" alt="" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-1">BEVOUNE HOËN PRADEL TIARNO</h3>
+                        <p class="text-orange-600 text-sm mb-4">Responsable du département d'évangélisation</p>
+                        <p class="text-gray-600 text-sm mb-4">Il est un jeune homme, fils de Dieu et disciple de Jésus-Christ. Originaire du Gabon, il n’a que peu d’intérêts en dehors de Jésus. Artiste lyriciste et adorateur, il aime profondément sa famille ainsi que la grande famille de Nehiyr Ministry. Son plus grand rêve est de voir des hommes et des femmes transformés par la puissance de l’Évangile de Jésus-Christ.</p>
+                        <div class="flex space-x-4 text-sm">
+                            <a href="#" class="text-gray-500 hover:text-orange-600">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                            <a href="#" class="text-gray-500 hover:text-orange-600">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                        </div>
+                        <div class="mt-4 pt-4 border-t border-gray-200">
+                            <p class="text-gray-700 italic">"Et Voici, je suis avec vous tous les jours, jusqu'à la fin du monde."</p>
+                            <p class="text-right text-sm text-gray-500">Matthieu 28 : 20b</p>
+                        </div>
+                    </div>
+                </div>
+               <!-- Leader 8 -->
+                <div class="leader-card reveal">
+                    <img src="./chenessia.jpeg" alt="" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-1">CHENESSA PAGOUI VANESSA</h3>
+                        <p class="text-orange-600 text-sm mb-4">Responsable du département Événementiel</p>
+                        <p class="text-gray-600 text-sm mb-4">Elle est une jeune femme en troisième année d’ingénierie électronique et télécommunications, passionnée par l’électronique, Jésus-Christ, la créativité et l’amour véritable. Son cœur bat pour l’art, la mode, le cinéma et l’inspiration. À travers ses actions, elle cherche à démontrer qu’il est possible de servir Dieu pleinement avec authenticité, sensibilité et style. Sa mission est de ramener les cœurs à Christ, en restant simplement elle-même, guidée par l’amour de Christ et le Saint-Esprit.</p>
+                        <div class="flex space-x-4 text-sm">
+                            <a href="#" class="text-gray-500 hover:text-orange-600">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                            <a href="#" class="text-gray-500 hover:text-orange-600">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                        </div>
+                        <div class="mt-4 pt-4 border-t border-gray-200">
+                            <p class="text-gray-700 italic">"Heureux celui pour qui je ne serai pas une occasion de chute !"</p>
+                            <p class="text-right text-sm text-gray-500">Matthieu 11:6</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Leader 9 -->
+             <div class="leader-card reveal">
+                    <img src="./moise.jpeg" alt="" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-1">AMANI AKILIMALI MOISE </h3>
+                        <p class="text-orange-600 text-sm mb-4">Responsable du département Social</p>
+                        <p class="text-gray-600 text-sm mb-4">Il est de nationalité congolaise et occupe actuellement le poste de président du département social. Il est également le fondateur et CEO de Mwana Nzambe, une initiative qui reflète son désir de servir Dieu à travers l’impact social. Son parcours témoigne d’un leadership centré sur la foi, le service et le développement de sa communauté</p>
+                        <div class="flex space-x-4 text-sm">
+                            <a href="#" class="text-gray-500 hover:text-orange-600">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                            <a href="#" class="text-gray-500 hover:text-orange-600">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                        </div>
+                        <div class="mt-4 pt-4 border-t border-gray-200">
+                            <p class="text-gray-700 italic">"Laissez votre lumière luire devant les hommes."</p>
+                            <p class="text-right text-sm text-gray-500">Matthieu 5:16</p>
+                        </div>
+                    </div>
+                </div>
+                  <!-- Leader 10 -->
+                <div class="leader-card reveal">
+                    <img src="./paxific.jpeg" alt="" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-1">KALUMUNA MUGISHO PACIFIC</h3>
+                        <p class="text-orange-600 text-sm mb-4">Responsable du département  multimédia</p>
+                        <p class="text-gray-600 text-sm mb-4">Chrétien sauvé par grâce, Kalumuna Mugisho Pacific est un ingénieur en électricité technologique, musicien pianiste, et responsable du département multimédia au sein de Nehiyr Ministry. Engagé, polyvalent et passionné, il met ses dons techniques et artistiques au service de l’œuvre de Dieu.</p>
+                        <div class="flex space-x-4 text-sm">
+                            <a href="#" class="text-gray-500 hover:text-orange-600">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                            <a href="#" class="text-gray-500 hover:text-orange-600">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                        </div>
+                        <div class="mt-4 pt-4 border-t border-gray-200">
+                            <p class="text-gray-700 italic">"Je puis tout par celui qui me fortifie."</p>
+                            <p class="text-right text-sm text-gray-500">Philippiens 4:13</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Leader 11 -->
+              <div class="leader-card reveal">
+                    <img src="./ma_igna.jpeg" alt="" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-1">MA-IGNA DEZOUMBE LAZEU </h3>
+                        <p class="text-orange-600 text-sm mb-4">Responsable du département de protocol et logistics </p>
+                        <p class="text-gray-600 text-sm mb-4">Une jeune femme tchadienne diplômée en télécommunication. Curieuse, ambitieuse et déterminée, elle allie ses compétences techniques à une véritable passion pour la technologie. Elle aspire à bâtir un parcours professionnel innovant, en contribuant activement à l’évolution du numérique sur le continent africain.</p>
+                        <div class="flex space-x-4 text-sm">
+                            <a href="#" class="text-gray-500 hover:text-orange-600">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                            <a href="#" class="text-gray-500 hover:text-orange-600">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                        </div>
+                        <div class="mt-4 pt-4 border-t border-gray-200">
+                            <p class="text-gray-700 italic">"Car nous sommes ouvriers avec Dieu. Vous êtes le champ de Dieu, l'édifice de Dieu."</p>
+                            <p class="text-right text-sm text-gray-500">1 Corinthiens 3:9</p>
+                        </div>
+                    </div>
+                </div>
+                
+              
+
+            </div>
+            
+            <div class="mt-12 text-center reveal">
+                <a href="#contact" class="btn-primary inline-flex items-center px-6 py-3">
+                    <i class="fas fa-paper-plane mr-2"></i>
+                    Contacter un leader
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Témoignages -->
+    <section class="py-20 bg-orange-600 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl font-bold mb-4 section-title">Témoignages</h2>
+                <p class="text-xl mt-4 max-w-3xl mx-auto">Ce que Dieu a fait dans la vie de ceux qui ont expérimenté Sa puissance</p>
+            </div>
+            
+            <div class="relative overflow-hidden">
+                <div id="testimonial-slider" class="flex transition-transform duration-500">
+                    <!-- Témoignage 1 -->
+                    <div class="testimonial-slide min-w-full px-4 md:px-12">
+                        <div class="bg-orange-700 rounded-xl p-8 md:p-10 max-w-4xl mx-auto">
+                            <i class="fas fa-quote-left text-3xl text-white-400 opacity-60 mb-4"></i>
+                            <p class="text-lg md:text-xl mb-8">"Certes, il y a beaucoup de choses à dire…
+Mais je commencerai par rendre grâce à Dieu pour tous ses bienfaits et pour m’avoir placée sur le chemin de Nehiyr.
+
+J’ai connu Nehiyr en 2021, lorsque je suis venue étudier à Kigali. C’est un ami qui m’y a invitée, et je bénis le nom de Dieu pour sa vie. Ce que je croyais être une simple rencontre ou une visite d’un jour est devenu pour moi une famille, un repère, un lieu de belles rencontres, et surtout le point de départ d’un profond changement spirituel.
+
+Au-delà d’avoir trouvé ma famille à Kigali, j’ai découvert quelque chose d'encore plus précieux : mon intimité avec le Christ. J’ai appris à mieux connaître la personne de Dieu et à marcher avec Lui.
+
+Nehiyr n’est pas simplement un groupe de jeunes où l’on prie, loue ou adore. C’est un lieu qui encourage les jeunes à cultiver une véritable relation avec Dieu. Et même si un jour tu es loin, l’impact de Nehiyr t’accompagnera. En tout cas, c’est ce que j’ai vécu et que je vis encore aujourd’hui.
+
+Dieu ne fait jamais les choses au hasard… alors, que toute la gloire Lui revienne."</p>
+                            <div class="flex items-center">
+                                <img src="">
+                                <div>
+                                    <h4 class="font-bold">Vanessa Kisobe.</h4>
+                                    <p class="text-black-200 text-sm">#Nehiyr_Ministry</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Témoignage 2 -->
+                    <div class="testimonial-slide min-w-full px-4 md:px-12">
+                        <div class="bg-orange-700 rounded-xl p-8 md:p-10 max-w-4xl mx-auto">
+                            <i class="fas fa-quote-left text-3xl text-white-400 opacity-70 mb-4"></i>
+                            <p class="text-lg md:text-xl mb-8">"Je suis membre de NEHIYR MINISTRY depuis sa création, et mon engagement demeure jusqu’à aujourd’hui.
+Même si j’ai traversé une période d’éloignement, j’ai fini par retrouver le chemin de cette famille spirituelle. Comme l’enfant prodigue, j’ai retrouvé mon Père céleste et je suis profondément reconnaissante pour cette seconde chance.
+
+Je rends grâce à Dieu pour NEHIYR MINISTRY, car ce groupe m’a aidée à bâtir une vie de prière solide. Je ne me suis jamais sentie seule. Les membres y partagent une foi authentique et des valeurs fortes, et je suis honorée d’en faire partie.
+
+Grâce à NEHIYR, j’ai trouvé du sens à ma vie et j’ai grandi spirituellement. J’ai appris à affronter des situations que je n’aurais jamais osé affronter auparavant. Ce groupe m’a aussi conduite à trouver mon église d’attache.
+
+Je précise que le groupe actuel n’est pas la première génération, et je prie qu’il ne soit pas la dernière. Que cette œuvre de Dieu continue à grandir et à bénir de nombreuses vies.
+
+Merci à NEHIYR MINISTRY pour tout. Que Dieu nous bénisse toujours davantage. Venez à Dieu, vous ne le regretterez pas. C’est la meilleure décision que l’on puisse prendre. "</p>
+                            <div class="flex items-center">
+                                <img src="">
+                                <div>
+                                    <h4 class="font-bold">Amundala Baramisse Catherine</h4>
+                                    <p class="text-black-200 text-sm">#Nehiyr_Ministry</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button id="prev-testimonial" class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-orange-800 text-white p-3 rounded-full ml-2 hover:bg-orange-900 transition duration-300">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button id="next-testimonial" class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-orange-800 text-white p-3 rounded-full mr-2 hover:bg-orange-900 transition duration-300">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            
+        </div>
+    </section>
+
+    
+
+    <!-- Section Contact -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4 section-title">Contactez-nous</h2>
+                <p class="text-xl text-gray-600 mt-4 max-w-3xl mx-auto">Nous serons ravis d'échanger avec vous et de répondre à vos questions</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="reveal">
+                   <form id="whatsapp-form" class="space-y-6">
+    <div>
+        <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Nom complet</label>
+        <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg" placeholder="Votre nom">
+    </div>
+
+    <div>
+        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Adresse email</label>
+        <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg" placeholder="votre@email.com">
+    </div>
+
+    <div>
+        <label for="subject" class="block text-sm font-medium text-gray-700 mb-1">Sujet</label>
+        <select id="subject" class="w-full px-4 py-3 border border-orange-300 rounded-lg">
+            <option value="" disabled selected>Sélectionnez un sujet</option>
+            <option>Demande d'information</option>
+            <option>Demande de prière</option>
+            <option>Inscription événement</option>
+            <option>Autre</option>
+        </select>
+    </div>
+
+    <div>
+        <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
+        <textarea id="message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg" placeholder="Votre message..."></textarea>
+    </div>
+
+    <div>
+        <button type="submit" class="btn-primary w-full px-6 py-3">
+            Envoyer le message
+        </button>
+    </div>
+</form>
+                </div>
+                
+                <div class="reveal">
+                    <div class="bg-gray-50 p-8 rounded-xl shadow-inner h-full">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-6">Autres moyens de contact</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 bg-orange-100 p-3 rounded-lg text-orange-600">
+                                    <i class="fas fa-phone-alt text-lg"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="text-lg font-medium text-gray-900">Téléphone</h4>
+                                    <p class="text-gray-600">+250 791 903 407</p>
+                                    <p class="text-gray-500 text-sm mt-1">Du lundi au dimanche, 9h-18h</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 bg-orange-100 p-3 rounded-lg text-orange-600">
+                                    <i class="fab fa-whatsapp text-lg"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="text-lg font-medium text-gray-900">WhatsApp</h4>
+                                    <p class="text-gray-600">+250 791 903 407</p>
+                                    
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 bg-orange-100 p-3 rounded-lg text-orange-600">
+                                    <i class="fas fa-envelope text-lg"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="text-lg font-medium text-gray-900">Email</h4>
+                                    <p class="text-gray-600">nehiyrminkigali@gmail.com</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 bg-orange-100 p-3 rounded-lg text-orange-600">
+                                    <i class="fas fa-pray text-lg"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="text-lg font-medium text-gray-900">Requête de prière</h4>
+                                    <p class="text-gray-600">Notre équipe prie quotidiennement pour vos requêtes</p>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   
+        
+
+        
+    </div>
+</div>
+
+<!-- Footer -->
+    <footer class="bg-orange-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">NEHIYR MINISTRY</h3>
+                    <p class="text-white-400">GROUPE  DE PRIERE DES JEUNES CHRETIENS .</p>
+                    <div class="flex space-x-4 mt-4">
+                        <a href="https://www.facebook.com/profile.php?id=61555489636573" class="text-white-400 hover:text-white"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/nehiyr_ministry250?igsh=ODI5bHB5aHV3anBl" class="text-white-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.tiktok.com/@nehiyr_ministry250?_t=ZM-8xhUimvl33e&_r=1" class="text-white-400 hover:text-white"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Liens rapides</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#accueil" class="text-white-400 hover:text-white">Accueil</a></li>
+                        <li><a href="#apropos" class="text-white-400 hover:text-white">À propos</a></li>
+                        <li><a href="#evenements" class="text-white-400 hover:text-white">Événements</a></li>
+                        <li><a href="#leaders" class="text-white-400 hover:text-white">Nos leaders</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Ressources</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-white-400 hover:text-white">Enseignements</a></li>
+                        <li><a href="#" class="text-white-400 hover:text-white">Temps de priere</a></li>
+                        <li><a href="#" class="text-white-400 hover:text-white">Livres recommandés</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Newsletter</h4>
+                    <p class="text-white-400 mb-4">Abonnez-vous pour recevoir nos dernières nouvelles.</p>
+                    <form class="flex">
+                        <input type="email" placeholder="Votre email" class="px-4 py-2 w-full rounded-l-lg focus:outline-none text-white-800">
+                        <button type="submit" class="bg-orange-600 hover:bg-orange-700 px-4 py-2 rounded-r-lg">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="border-t border-white-700 mt-8 pt-8 text-center text-white-400">
+                <p>&copy; 2021 Nehiyr Ministry. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Admin Login Modal -->
+    <div id="admin-login" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-lg shadow-xl max-w-md w-full p-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Connexion Admin</h2>
+            <form id="login-form" class="space-y-4">
+                <div>
+                    <label for="username" class="block text-sm font-medium text-gray-700 mb-1">Nom d'utilisateur</label>
+                    <input type="text" id="username" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-orange-500 focus:border-orange-500" required>
+                </div>
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Mot de passe</label>
+                    <input type="password" id="password" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-orange-500 focus:border-orange-500" required>
+                </div>
+                <button type="submit" class="btn-primary w-full py-2">Se connecter</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/scrollreveal@4.0.7/dist/scrollreveal.min.js"></script>
+    <script>
+        // Menu mobile
+        document.getElementById('menu-btn').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+        
+        // Scroll reveal
+        ScrollReveal().reveal('.reveal', { 
+            distance: '60px',
+            duration: 1000,
+            delay: 200,
+            easing: 'cubic-bezier(0.5, 0, 0, 1)',
+            interval: 200,
+            reset: false
+        });
+        
+        
+        
+        // Carrousel témoignages
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.testimonial-slide');
+        const totalSlides = slides.length;
+        
+        function showSlide(n) {
+            currentSlide = (n + totalSlides) % totalSlides;
+            const offset = -currentSlide * 100;
+            document.getElementById('testimonial-slider').style.transform = `translateX(${offset}%)`;
+        }
+        
+        document.getElementById('next-testimonial').addEventListener('click', () => showSlide(currentSlide + 1));
+        document.getElementById('prev-testimonial').addEventListener('click', () => showSlide(currentSlide - 1));
+        
+        // Admin login functionality
+        document.querySelectorAll('[href="#admin-login"]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                document.getElementById('admin-login').classList.toggle('hidden');
+            });
+        });
+
+        document.getElementById('login-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            // Simple validation for demo (replace with real authentication)
+            if(username === 'admin' && password === 'password') {
+                window.location.href = 'admin.html';
+            } else {
+                alert('Identifiants incorrects. Veuillez réessayer.');
+            }
+        });
+
+        // Close modal when clicking outside
+        document.getElementById('admin-login').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('admin-login')) {
+                document.getElementById('admin-login').classList.add('hidden');
+            }
+        });
+
+        // Activer les animations au chargement
+        document.addEventListener('DOMContentLoaded', function() {
+            const elements = document.querySelectorAll('.reveal');
+            elements.forEach(el => el.classList.add('active'));
+        });
+
+        document.getElementById("whatsapp-form").addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const subject = document.getElementById("subject").value;
+        const message = document.getElementById("message").value.trim();
+
+        const phoneNumber = "250791903407"; // ← remplace par ton numéro WhatsApp au format international sans le +
+
+        const fullMessage =
+            `*Nom:* ${name}%0A` +
+            `*Email:* ${email}%0A` +
+            `*Sujet:* ${subject}%0A` +
+            `*Message:* ${message}`;
+
+        const url = `https://wa.me/${phoneNumber}?text=${fullMessage}`;
+
+        window.open(url, "_blank");
+    });
+    </script>
+</body>
+</html>
